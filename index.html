@@ -188,10 +188,10 @@
       border-radius: 14px 14px 0 0;
     }
     .project-card:hover {
-      border-color: rgba(124,58,237,0.3);
+      border-color: var(--card-accent-glow, rgba(124,58,237,0.3));
       background: var(--surface);
       transform: translateY(-3px);
-      box-shadow: 0 8px 32px rgba(124,58,237,0.12);
+      box-shadow: 0 8px 32px var(--card-accent-glow, rgba(124,58,237,0.12));
     }
     .project-card.muted-card { opacity: 0.55; cursor: default; }
     .project-card.muted-card:hover { transform: none; border-color: var(--border); background: var(--bg2); box-shadow: none; }
@@ -353,7 +353,7 @@
   <h2>What I&rsquo;m working on</h2>
   <div class="projects-grid">
 
-    <a href="https://rose.hiddenfolder.games" target="_blank" class="project-card" style="--card-accent: linear-gradient(90deg,#38bdf8,#818cf8); --card-accent-text: #7dd3fc; --card-accent-dot: #38bdf8;">
+    <a href="https://rose.hiddenfolder.games" target="_blank" class="project-card" style="--card-accent: linear-gradient(90deg,#38bdf8,#818cf8); --card-accent-text: #7dd3fc; --card-accent-dot: #38bdf8; --card-accent-glow: rgba(56,189,248,0.3);">
       <div class="project-type">Desktop App</div>
       <div class="project-title">Rose[]</div>
       <div class="project-desc">A library manager for local Ren'Py games. Covers, metadata, version tracking and auto-updates &mdash; all in one place.</div>
@@ -363,7 +363,7 @@
       </div>
     </a>
 
-    <a href="https://milkyway.hiddenfolder.games" target="_blank" class="project-card" style="--card-accent: linear-gradient(90deg,#fbbf24,#f97316); --card-accent-text: #fcd34d; --card-accent-dot: #fbbf24;">
+    <a href="https://milkyway.hiddenfolder.games" target="_blank" class="project-card" style="--card-accent: linear-gradient(90deg,#fbbf24,#f97316); --card-accent-text: #fcd34d; --card-accent-dot: #fbbf24; --card-accent-glow: rgba(251,191,36,0.3);">
       <div class="project-type">Game &middot; Steam</div>
       <div class="project-title">Milky Way: Chumak Trail</div>
       <div class="project-desc">Lead a Chumak caravan across the Ukrainian steppe. Trade salt, manage your oxen, follow the Milky Way.</div>
@@ -373,7 +373,7 @@
       </div>
     </a>
 
-    <a href="https://t.me/uaAssistantBot" target="_blank" class="project-card" style="--card-accent: linear-gradient(90deg,#22d3ee,#34d399); --card-accent-text: #6ee7b7; --card-accent-dot: #22d3ee;">
+    <a href="https://t.me/uaAssistantBot" target="_blank" class="project-card" style="--card-accent: linear-gradient(90deg,#22d3ee,#34d399); --card-accent-text: #6ee7b7; --card-accent-dot: #22d3ee; --card-accent-glow: rgba(34,211,238,0.3);">
       <div class="project-type">Telegram Bot</div>
       <div class="project-title">Хвеська</div>
       <div class="project-desc">A Ukrainian-language assistant bot. Named after the iconic chatterbox from Karpenko-Karyi&rsquo;s play &mdash; because it never stops talking.</div>

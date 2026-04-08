@@ -10,14 +10,14 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:      #111115;
-      --bg2:     #18181e;
-      --surface: #21212a;
-      --border:  #2e2e3a;
-      --text:    #eeeef5;
-      --muted:   #888899;
-      --dim:     #555566;
-      --white:   #ffffff;
+      --bg:      #07071a;
+      --bg2:     #0d0d24;
+      --surface: #12122e;
+      --border:  #1e1e45;
+      --border2: #2a2a5a;
+      --text:    #eeeef8;
+      --muted:   #8888bb;
+      --dim:     #44446a;
     }
 
     html { scroll-behavior: smooth; }
@@ -26,13 +26,30 @@
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    /* ── NAV ── */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -30%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 600px;
+      background:
+        radial-gradient(ellipse at 30% 40%, rgba(124,58,237,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 30%, rgba(37,99,235,0.14) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 80%, rgba(6,182,212,0.10) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* NAV */
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(17,17,21,0.88);
-      backdrop-filter: blur(12px);
+      background: rgba(7,7,26,0.82);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
       padding: 0 2rem;
       height: 3.5rem;
@@ -43,7 +60,7 @@
       font-size: 0.95rem; font-weight: 700;
       color: var(--text); text-decoration: none;
     }
-    .nav-logo svg { width: 28px; height: 28px; color: var(--text); }
+    .nav-logo svg { width: 28px; height: 28px; }
     .nav-links { display: flex; gap: 0.4rem; align-items: center; }
     .nav-link {
       display: flex; align-items: center; gap: 0.35rem;
@@ -52,11 +69,12 @@
       border-radius: 6px;
       transition: color 0.15s, background 0.15s;
     }
-    .nav-link:hover { color: var(--text); background: rgba(255,255,255,0.06); }
+    .nav-link:hover { color: var(--text); background: rgba(124,58,237,0.12); }
     .nav-link svg { flex-shrink: 0; }
 
-    /* ── HERO ── */
+    /* HERO */
     .hero {
+      position: relative; z-index: 1;
       text-align: center;
       padding: 7rem 2rem 6rem;
       max-width: 680px; margin: 0 auto;
@@ -64,13 +82,13 @@
     .hero-logo {
       width: 80px; height: 80px;
       margin: 0 auto 2rem;
-      color: var(--white);
-      opacity: 0.92;
+      filter: drop-shadow(0 0 18px rgba(124,58,237,0.5));
     }
     .hero-badge {
       display: inline-block;
-      border: 1px solid var(--border);
-      color: var(--muted);
+      background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(37,99,235,0.15));
+      border: 1px solid rgba(124,58,237,0.35);
+      color: #a78bfa;
       font-size: 0.72rem;
       padding: 0.3rem 0.9rem;
       border-radius: 999px;
@@ -85,30 +103,47 @@
       letter-spacing: -0.03em;
       line-height: 1.1;
       margin-bottom: 1rem;
+      background: linear-gradient(135deg, #c4b5fd 0%, #93c5fd 50%, #67e8f9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .hero .tagline {
       font-size: 1.05rem;
       color: var(--muted);
-      margin-bottom: 0;
     }
 
-    /* ── DIVIDER ── */
-    hr { border: none; height: 1px; background: var(--border); max-width: 960px; margin: 0 auto; }
+    /* DIVIDER */
+    hr {
+      border: none; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border2), transparent);
+      max-width: 960px; margin: 0 auto;
+    }
 
-    /* ── ABOUT ── */
+    /* ABOUT */
     .about {
+      position: relative; z-index: 1;
       padding: 5rem 2rem;
       max-width: 680px; margin: 0 auto;
+    }
+    .about-inner {
+      display: flex; align-items: flex-start; gap: 2rem; margin-bottom: 1.5rem;
+    }
+    .about-avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      object-fit: cover; flex-shrink: 0;
+      border: 2px solid rgba(124,58,237,0.4);
+      box-shadow: 0 0 20px rgba(124,58,237,0.25);
     }
     .section-label {
       font-size: 0.72rem; font-weight: 700;
       letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--dim); margin-bottom: 0.65rem;
+      color: #7c3aed; margin-bottom: 0.65rem;
     }
     .about h2 {
       font-size: clamp(1.4rem, 3vw, 1.8rem);
       font-weight: 800; letter-spacing: -0.02em;
-      margin-bottom: 1.25rem;
+      margin-bottom: 0.75rem;
     }
     .about p {
       font-size: 1rem; color: var(--muted);
@@ -116,11 +151,13 @@
     }
     .about p:last-child { margin-bottom: 0; }
 
-    /* ── PROJECTS ── */
+    /* PROJECTS */
     .projects-section {
+      position: relative; z-index: 1;
       padding: 5rem 2rem;
       max-width: 960px; margin: 0 auto;
     }
+    .projects-section .section-label { margin-bottom: 0.5rem; }
     .projects-section h2 {
       font-size: clamp(1.4rem, 3vw, 1.8rem);
       font-weight: 800; letter-spacing: -0.02em;
@@ -134,12 +171,12 @@
     .project-card {
       background: var(--bg2);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 1.5rem;
       text-decoration: none;
       color: inherit;
       display: flex; flex-direction: column; gap: 0.75rem;
-      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s, box-shadow 0.2s;
       position: relative;
       overflow: hidden;
     }
@@ -147,20 +184,21 @@
       content: '';
       position: absolute; top: 0; left: 0; right: 0; height: 2px;
       background: var(--card-accent, transparent);
-      border-radius: 12px 12px 0 0;
+      border-radius: 14px 14px 0 0;
     }
     .project-card:hover {
-      border-color: var(--card-accent, var(--border));
+      border-color: rgba(124,58,237,0.3);
       background: var(--surface);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(124,58,237,0.12);
     }
-    .project-card.muted-card { opacity: 0.6; cursor: default; }
-    .project-card.muted-card:hover { transform: none; border-color: var(--border); background: var(--bg2); }
+    .project-card.muted-card { opacity: 0.55; cursor: default; }
+    .project-card.muted-card:hover { transform: none; border-color: var(--border); background: var(--bg2); box-shadow: none; }
 
     .project-type {
       font-size: 0.7rem; font-weight: 700;
       letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--card-accent, var(--dim));
+      color: var(--card-accent-text, var(--dim));
     }
     .project-title {
       font-size: 1.1rem; font-weight: 800;
@@ -176,13 +214,15 @@
     }
     .status-dot {
       width: 6px; height: 6px; border-radius: 50%;
-      background: var(--card-accent, var(--dim));
+      background: var(--card-accent-dot, var(--dim));
       flex-shrink: 0;
+      box-shadow: 0 0 6px var(--card-accent-dot, transparent);
     }
-    .status-dot.dim { background: var(--dim); }
+    .status-dot.dim { background: var(--dim); box-shadow: none; }
 
-    /* ── LINKS ── */
+    /* LINKS */
     .links-section {
+      position: relative; z-index: 1;
       padding: 4rem 2rem 5rem;
       max-width: 680px; margin: 0 auto; text-align: center;
     }
@@ -196,16 +236,21 @@
     }
     .social-link {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--bg2); border: 1px solid var(--border);
+      background: var(--bg2); border: 1px solid var(--border2);
       color: var(--muted); text-decoration: none;
       font-size: 0.88rem; font-weight: 600;
       padding: 0.6rem 1.25rem; border-radius: 8px;
-      transition: color 0.15s, border-color 0.15s, background 0.15s;
+      transition: color 0.15s, border-color 0.15s, background 0.15s, box-shadow 0.15s;
     }
-    .social-link:hover { color: var(--text); border-color: #555566; background: var(--surface); }
+    .social-link:hover {
+      color: var(--text);
+      border-color: rgba(124,58,237,0.5);
+      background: var(--surface);
+      box-shadow: 0 4px 16px rgba(124,58,237,0.12);
+    }
 
-    /* ── FOOTER ── */
-    .footer-wrap { border-top: 1px solid var(--border); }
+    /* FOOTER */
+    .footer-wrap { border-top: 1px solid var(--border); position: relative; z-index: 1; }
     footer {
       padding: 1.5rem 2rem;
       display: flex; align-items: center; justify-content: space-between;
@@ -256,19 +301,26 @@
 
 <!-- HERO -->
 <section class="hero">
-  <svg class="hero-logo" viewBox="0 0 100 92" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-    <path d="M6 32 L6 20 Q6 15 11 15 L37 15 Q40.5 15 42.5 18.5 L46 24 L89 24 Q94 24 94 29 L94 78 Q94 83 89 83 L11 83 Q6 83 6 78 Z" stroke-width="4.5"/>
-    <rect x="22" y="44" width="56" height="26" rx="13" stroke-width="4"/>
-    <rect x="18" y="57" width="11" height="17" rx="5.5" stroke-width="4"/>
-    <rect x="71" y="57" width="11" height="17" rx="5.5" stroke-width="4"/>
-    <line x1="37" y1="50" x2="37" y2="61" stroke-width="3.5"/>
-    <line x1="31.5" y1="55.5" x2="42.5" y2="55.5" stroke-width="3.5"/>
-    <circle cx="66" cy="50.5" r="2.5" fill="currentColor" stroke="none"/>
-    <circle cx="72.5" cy="55.5" r="2.5" fill="currentColor" stroke="none"/>
-    <circle cx="66" cy="60.5" r="2.5" fill="currentColor" stroke="none"/>
-    <circle cx="59.5" cy="55.5" r="2.5" fill="currentColor" stroke="none"/>
+  <svg class="hero-logo" viewBox="0 0 100 92" fill="none" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="grad" x1="0" y1="0" x2="100" y2="92" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#c4b5fd"/>
+        <stop offset="50%" stop-color="#93c5fd"/>
+        <stop offset="100%" stop-color="#67e8f9"/>
+      </linearGradient>
+    </defs>
+    <path d="M6 32 L6 20 Q6 15 11 15 L37 15 Q40.5 15 42.5 18.5 L46 24 L89 24 Q94 24 94 29 L94 78 Q94 83 89 83 L11 83 Q6 83 6 78 Z" stroke="url(#grad)" stroke-width="4.5" fill="none"/>
+    <rect x="22" y="44" width="56" height="26" rx="13" stroke="url(#grad)" stroke-width="4" fill="none"/>
+    <rect x="18" y="57" width="11" height="17" rx="5.5" stroke="url(#grad)" stroke-width="4" fill="none"/>
+    <rect x="71" y="57" width="11" height="17" rx="5.5" stroke="url(#grad)" stroke-width="4" fill="none"/>
+    <line x1="37" y1="50" x2="37" y2="61" stroke="url(#grad)" stroke-width="3.5"/>
+    <line x1="31.5" y1="55.5" x2="42.5" y2="55.5" stroke="url(#grad)" stroke-width="3.5"/>
+    <circle cx="66" cy="50.5" r="2.5" fill="#93c5fd"/>
+    <circle cx="72.5" cy="55.5" r="2.5" fill="#93c5fd"/>
+    <circle cx="66" cy="60.5" r="2.5" fill="#93c5fd"/>
+    <circle cx="59.5" cy="55.5" r="2.5" fill="#93c5fd"/>
   </svg>
-  <div class="hero-badge">Independent · Solo</div>
+  <div class="hero-badge">Independent &middot; Solo</div>
   <h1>Hidden Folder Games</h1>
   <p class="tagline">One-person orchestra. Person of the decline era.</p>
 </section>
@@ -278,16 +330,19 @@
 <!-- ABOUT -->
 <section class="about" id="about">
   <p class="section-label">About</p>
-  <h2>Hi, I'm Ihor.</h2>
-  <p>
-    I'm a solo developer who builds things that seem interesting or useful to me —
-    games, desktop apps, Telegram bots, visual novels, localizations.
-    No strict genre, no strict format. If the idea catches me, I make it.
-  </p>
+  <div class="about-inner">
+    <img src="avatar.jpg" alt="" class="about-avatar" />
+    <div>
+      <h2>Hi.</h2>
+      <p>A solo enthusiast who builds things that seem interesting or useful &mdash;
+      games, desktop apps, Telegram bots, visual novels, localizations.
+      No strict genre, no strict format. If the idea catches me, I make it.</p>
+    </div>
+  </div>
   <p>
     Hidden Folder Games is where all of that lives.
     Some projects take months, some years. All of them are made by one person,
-    which means they're slow but personal.
+    which means they&rsquo;re slow but personal.
   </p>
 </section>
 
@@ -296,45 +351,41 @@
 <!-- PROJECTS -->
 <section class="projects-section" id="projects">
   <p class="section-label">Projects</p>
-  <h2>What I'm working on</h2>
+  <h2>What I&rsquo;m working on</h2>
   <div class="projects-grid">
 
-    <!-- Rose[] -->
-    <a href="https://rose.hiddenfolder.games" target="_blank" class="project-card" style="--card-accent: #88d5ff;">
+    <a href="https://rose.hiddenfolder.games" target="_blank" class="project-card" style="--card-accent: linear-gradient(90deg,#38bdf8,#818cf8); --card-accent-text: #7dd3fc; --card-accent-dot: #38bdf8;">
       <div class="project-type">Desktop App</div>
       <div class="project-title">Rose[]</div>
-      <div class="project-desc">A library manager for local Ren'Py games. Covers, metadata, version tracking and auto-updates — all in one place.</div>
+      <div class="project-desc">A library manager for local Ren'Py games. Covers, metadata, version tracking and auto-updates &mdash; all in one place.</div>
       <div class="project-status">
         <span class="status-dot"></span>
-        Available · Windows · Free
+        Available &middot; Windows &middot; Free
       </div>
     </a>
 
-    <!-- Milky Way -->
-    <a href="https://milkyway.hiddenfolder.games" target="_blank" class="project-card" style="--card-accent: #c8922a;">
-      <div class="project-type">Game · Steam</div>
+    <a href="https://milkyway.hiddenfolder.games" target="_blank" class="project-card" style="--card-accent: linear-gradient(90deg,#fbbf24,#f97316); --card-accent-text: #fcd34d; --card-accent-dot: #fbbf24;">
+      <div class="project-type">Game &middot; Steam</div>
       <div class="project-title">Milky Way: Chumak Trail</div>
       <div class="project-desc">Lead a Chumak caravan across the Ukrainian steppe. Trade salt, manage your oxen, follow the Milky Way.</div>
       <div class="project-status">
         <span class="status-dot"></span>
-        In development · Coming to Steam
+        In development &middot; Coming to Steam
       </div>
     </a>
 
-    <!-- Хвеська -->
-    <a href="https://t.me/uaAssistantBot" target="_blank" class="project-card" style="--card-accent: #29a8e0;">
+    <a href="https://t.me/uaAssistantBot" target="_blank" class="project-card" style="--card-accent: linear-gradient(90deg,#22d3ee,#34d399); --card-accent-text: #6ee7b7; --card-accent-dot: #22d3ee;">
       <div class="project-type">Telegram Bot</div>
       <div class="project-title">Хвеська</div>
-      <div class="project-desc">A Ukrainian-language assistant bot. Named after the iconic chatterbox from Karpenko-Karyi's play — because it never stops talking.</div>
+      <div class="project-desc">A Ukrainian-language assistant bot. Named after the iconic chatterbox from Karpenko-Karyi&rsquo;s play &mdash; because it never stops talking.</div>
       <div class="project-status">
         <span class="status-dot"></span>
-        Live · @uaAssistantBot
+        Live &middot; @uaAssistantBot
       </div>
     </a>
 
-    <!-- Visual Novel -->
-    <div class="project-card muted-card" style="--card-accent: #b088ff;">
-      <div class="project-type">Game · Visual Novel</div>
+    <div class="project-card muted-card" style="--card-accent: linear-gradient(90deg,#a78bfa,#f472b6);">
+      <div class="project-type">Game &middot; Visual Novel</div>
       <div class="project-title">Untitled Visual Novel</div>
       <div class="project-desc">An original visual novel. Story-first, personal. Details to be announced.</div>
       <div class="project-status">
@@ -343,7 +394,6 @@
       </div>
     </div>
 
-    <!-- Localization -->
     <div class="project-card muted-card">
       <div class="project-type">Localization</div>
       <div class="project-title">Fan Translations</div>
@@ -390,7 +440,7 @@
 <!-- FOOTER -->
 <div class="footer-wrap">
   <footer>
-    <p>© 2026 Hidden Folder Games</p>
+    <p>&copy; 2026 Hidden Folder Games</p>
     <div class="footer-links">
       <a href="https://rose.hiddenfolder.games" target="_blank">Rose[]</a>
       <a href="https://milkyway.hiddenfolder.games" target="_blank">Milky Way</a>
